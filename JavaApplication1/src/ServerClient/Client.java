@@ -1,16 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ServerClient;
-import java.util.UUID;
 /**
  *
- * @author stefaneisenkolb
+ * @author Stefan Nhan-Eisenkolb
  */
+import java.util.UUID;
+
 public class Client {
-    protected String clientName;
-    public Server server1;
+    private String clientName;
+    public Server mailServer;
     
     public void Client() {
         this.clientName = UUID.randomUUID().toString();
@@ -21,7 +18,13 @@ public class Client {
     public String getClientName() {
         return this.clientName;
     }
-    public void sendMessage(String message, String client) {
-        
+    public void setMailServer(Server s) {
+        this.mailServer = s;
+    }
+    public void sendMessage(String message, String receiver) {
+        this.mailServer.sendMessage(message, receiver, this);
+    }
+    public String inbox(String message, String sender) {
+        return message+" from: "+sender;
     }
 }
