@@ -1,4 +1,4 @@
-package ServerClient;
+package ServerInterfaceClient;
 /**
  *
  * @author Stefan Nhan-Eisenkolb
@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class Client {
     private String clientName;
-    private Server mailServer;
+    private IServer mailServer;
     
     public void Client() {
         this.clientName = UUID.randomUUID().toString();
@@ -19,12 +19,12 @@ public class Client {
     public String getClientName() {
         return this.clientName;
     }
-    public void setMailServer(Server s) {
+    public void setMailServer(IServer s) {
         this.mailServer = s;
         this.mailServer.connect(this);
     }
     public void sendMessage(String message, String receiver) {
-        this.mailServer.sendMessage(message, receiver, this);
+        this.mailServer.sendMessageTo(message, receiver, this);
     }
     public ArrayList<String> inbox() {
         return this.mailServer.getMessages(this);
